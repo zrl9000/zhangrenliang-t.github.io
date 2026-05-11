@@ -6,131 +6,134 @@
     <title>添加微信：zrl19151830202</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        :root {
+            --wechat-green: #07c160;
+            --wechat-light: #09b85d;
         }
-        
         body {
-            background: linear-gradient(135deg, #07c160 0%, #09b85d 100%);
+            background: linear-gradient(135deg, var(--wechat-green), var(--wechat-light));
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
         }
-        
-        .container {
-            width: 100%;
-            max-width: 500px;
+        .card {
+            width: min(100%, 420px);
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         .header {
-            background: linear-gradient(135deg, #07c160, #09b85d);
+            background: linear-gradient(135deg, var(--wechat-green), var(--wechat-light));
             color: white;
-            padding: 40px 20px;
+            padding: 36px 24px;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.3;
-        }
-        
         .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 5px solid white;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: white;
-            background: #07c160;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 2;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 16px;
+            border: 4px solid rgba(255,255,255,0.9);
+            animation: pulse 2.4s infinite ease-in-out;
         }
-        
-        .avatar i {
-            animation: pulse 2s infinite;
-        }
-        
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
         }
-        
-        .id-display {
-            background: rgba(255,255,255,0.2);
-            padding: 12px;
-            border-radius: 50px;
-            margin: 20px auto;
-            width: fit-content;
-            font-weight: bold;
-            font-size: 18px;
+        .wechat-id {
+            background: rgba(255,255,255,0.18);
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
-        
-        .copy-btn {
-            background: white;
-            color: #07c160;
-            border: none;
+        .qrcode-container {
+            padding: 28px;
+            text-align: center;
+        }
+        .qrcode-box {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .qrcode-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .tip-text {
+            color: #888;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
             padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
+            border-radius: 20px;
+            background: white;
+            color: var(--wechat-green);
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-        
-        .copy-btn:hover {
+        .btn-copy:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <div class="header">
             <div class="avatar">
-                <i class="fab fa-weixin"></i>
+                <i class="fab fa-weixin" style="font-size: 48px; line-height: 88px;"></i>
             </div>
-            <h1>添加我的微信</h1>
-            <div class="id-display">微信号：zrl19151830202</div>
-            <button class="copy-btn" onclick="copyWechatID()">复制微信号</button>
+            <h2 style="margin-bottom: 8px;">添加我的微信</h2>
+            <div class="wechat-id">微信号：zrl19151830202</div>
+            <button class="btn-copy" onclick="copyWeChatId()">
+                <i class="far fa-copy"></i> 复制微信号
+            </button>
+        </div>
+        
+        <div class="qrcode-container">
+            <div class="qrcode-box">
+                <!-- 替换为你的二维码图片 -->
+                
+            </div>
+            <p class="tip-text">长按识别二维码添加好友</p>
         </div>
     </div>
 
     <script>
-        function copyWechatID() {
+        function copyWeChatId() {
             const id = 'zrl19151830202';
             navigator.clipboard.writeText(id)
-                .then(() => alert('微信号已复制: ' + id))
-                .catch(err => console.error('复制失败:', err));
+                .then(() => {
+                    const btn = document.querySelector('.btn-copy');
+                    btn.innerHTML = '<i class="fas fa-check"></i> 复制成功';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="far fa-copy"></i> 复制微信号';
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert('复制失败，请手动复制');
+                    console.error(err);
+                });
         }
     </script>
 </body>
